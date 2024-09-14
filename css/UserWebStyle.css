@@ -1,0 +1,105 @@
+.partsBase{
+    position: absolute;
+}
+.globalMessageArea{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 2147483647;
+    background-color: white;
+    border: solid 1px black;
+}
+.errorMessage{
+    margin: 0px;
+	padding: 1px 0px;
+}
+.errorField{
+    position: absolute;
+    z-index: 2147483646;
+    margin-top: 22px;   /* errorButtonのheight+margin-top */
+    margin-left: 2px;   /* errorButtonのmargin-leftと同値 */
+    background-color: white;
+    border: solid 1px black;
+}
+.errorButton{
+    position: absolute;
+    z-index: 2147483645;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-left: 2px;
+    background-color: red;
+    border: solid 1px white;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* -------------------------------------------------------------------------------- */
+/* データブロック部品 */
+/* -------------------------------------------------------------------------------- */
+.datblk,
+.datblk_name,
+.datblk_val{
+    border: 1px solid black;
+    padding: 0px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    font-size: 20px;
+}
+.datblk{
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+.datblk_name,
+.datblk_val{
+    overflow: hidden;
+}
+
+/* -------------------------------------------------------------------------------- */
+/* ヒストリカルグラフ部品 */
+/* -------------------------------------------------------------------------------- */
+.hstgrp{
+    border: 1px solid black;
+    background-color: white;
+}
+.hstgrp_frame{
+    stroke: black;
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+}
+.hstgrp_text_x,
+.hstgrp_text_y{
+    font-size: 20px;
+}
+.hstgrp_line{
+    stroke: blue;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+/* -------------------------------------------------------------------------------- */
+/* ログアウトボタン部品 */
+/* -------------------------------------------------------------------------------- */
+.logout_btn{
+    padding: 0px;
+    text-align: center;
+    color: black;
+    overflow: hidden;
+	font-size: 20px;
+}
+/* -------------------------------------------------------------------------------- */
+/* 書き込み部品(ボタンのスタイル)                                               */
+/* -------------------------------------------------------------------------------- */
+.write_btn{
+    font-weight:bold;
+    font-family:Meiryo;
+    font-size:20px;
+	border-radius:10px
+}
+/* -------------------------------------------------------------------------------- */
+/* レベル部品(スタイル)                                               */
+/* -------------------------------------------------------------------------------- */
+.partsLevelValue{
+    font-weight:bold;
+    font-size:20px;
+}

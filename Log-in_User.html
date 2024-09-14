@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<!-- UserWebLib.jsファイルのパスを指定する。 -->
+		<script src="./FUserWebLib.js"></script>
+		<title>ログイン画面</title>
+		<!-- Userカスタムスクリプトを<script>タグ内に記述。 -->
+		<script>
+			// メッセージ表示言語の指定(ja-JP：日本語、en-US：英語、zh-CN：中国語)
+			var dspLanguage = 'ja-JP';
+			/**
+			 * ユーザ名入力チェック(onkeyupで呼び出す)
+			 * @param {string} user_id	ユーザ名のエレメントID
+			 * @param {string} msg_id	メッセージ表示領域のエレメントID
+			 */
+			function checkUser(user_id, msg_id)
+			{
+				// 操作要素を取得
+				var user	= document.getElementById(user_id);
+				var msg		= document.getElementById(msg_id);
+
+				if('' != user.value) {
+					if(!/^[a-zA-Z0-9 !-/:-@¥[-`{-~]{1,20}$/.test(user.value)) {
+						// 入力チェックNGの場合は背景を赤くする
+						user.style.backgroundColor = 'rgb(255,192,192)';
+					} else {
+						// 入力チェックOKの場合は背景を元に戻す(入力しなおしたときに赤背景スタイルが効いたままとなるため)
+						user.style.backgroundColor = '';
+						if(msg) {
+							// 表示済みのエラーメッセージも除去(入力しなおしたときに前回表示メッセージを表示したままとなるため)
+							msg.innerText = '';
+						}
+					}
+				} else {
+					// 未入力の場合何もしない
+					user.style.backgroundColor = '';
+					if(msg) {
+						// 表示済みのエラーメッセージも除去
+						msg.innerText = '';
+					}
+				}
+			}
+			/**
+			 * パスワード入力チェックonKeyupで呼び出す(onkeyupで呼び出す)
+			 * @param {string} pass_id	パスワードのエレメントID
+			 * @param {string} msg_id	メッセージ表示領域のエレメントID
+			 */
+			function checkPass(key, pass_id, msg_id)
+			{
+				// 操作要素を取得
+				var pass = document.getElementById(pass_id);
+				var msg		= document.getElementById(msg_id);
+
+				if(13 == key) {
+					// 本チェックではEnterキーは無視する
+					return;
+				}
+
+				if('' != pass.value) {
+					if(!/^[a-zA-Z0-9 !-/:-@¥[-`{-~]{6,32}$/.test(pass.value)) {
+						// 入力チェックNGの場合は背景を赤くする
+						pass.style.backgroundColor = 'rgb(255,192,192)';
+					} else {
+						// 入力チェックOKの場合は背景を元に戻す
+						pass.style.backgroundColor = '';
+						if(msg) {
+							// 表示済みのエラーメッセージも除去
+							msg.innerText = '';
+						}
+					}
+				} else {
+					pass.style.backgroundColor = '';
+					if(msg) {
+						// 表示済みのエラーメッセージも除去
+						msg.innerText = '';
+					}
+				}
+			}
+			/**
+			 * パスワードEnterキー押下でログイン処理実行(onkeypressで呼び出す)
+			 * @param {string} key		入力されたキーコード
+			 * @param {string} btn_id	実行するボタンのエレメントID
+			 */
+			function keyDown(key, btn_id)
+			{
+				if(13 == key) {
+					// 入力キーがEnterキーの場合にのみ、「ログイン」クリック相当の処理を実行
+					document.getElementById(btn_id).click();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div  align="center">
+			<p>ログイン画面</p>
+			<!-- ユーザ名入力のdiv -->
+			<div>
+				ユーザ名:
+				<input type="text"	id="user" maxlength="20" onKeyup="checkUser('user', 'msgArea')" pattern="^[0-9A-Za-z]+$" autocomplete="off" autofocus="" required=""/>
+			</div>
+			<!-- パスワード入力のdiv -->
+			<div>
+				パスワード:
+				<input type="password"	id="pass" maxlength="32" onkeyup="checkPass(event.keyCode, 'pass', 'msgArea')" onkeypress="keyDown(event.keyCode, 'login_btn')" autocomplete="off" required=""/>
+			</div>
+			<!-- ログインボタンのdiv -->
+			<div>
+				<!-- onclickイベントに loginStart() 関数を登録します。 -->
+				<!-- 引数の説明：loginStart(ユーザー名テキストボックスに指定したid, パスワードテキストボックスに指定したid, メッセージ表示領域に指定したid) -->
+				<button id="login_btn" onclick="loginStart('user', 'pass', 'msgArea')">ログイン</button>
+			</div>
+			<!-- エラーメッセージを表示する領域のdiv -->
+			<div id="msgArea"></div>
+		</div>
+	</body>
+</html>
